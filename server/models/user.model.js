@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        maxLength: 128 
+        maxLength: 128
     },
     lastName: {
         type: String,
@@ -43,8 +43,8 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength : 6,
-        maxLength : 254
+        minLength: 6,
+        maxLength: 254
 
     },
     accountType: {
@@ -53,6 +53,23 @@ const schema = new mongoose.Schema({
         default: 'user',
         required: true
     }
-}, {timestamps : true});
+}, { timestamps: true });
+
+schema.statics.login = async function (email, password) {
+    const user = await this.findOne({ "email": email });
+
+    if (!user) {
+        throw Error('incorrect email');
+    }
+
+    // check password
+    const auth = (password == user.password) ? true : false;
+
+    if (!auth) {
+        throw Error('incorrect password');
+    }
+
+    return user;
+}
 
 module.exports = mongoose.model('User', schema);
