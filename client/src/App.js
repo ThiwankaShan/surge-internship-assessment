@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/home'
 import Login from './pages/login';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UserForm from './pages/userForm';
 
 function App() {
   
@@ -13,6 +13,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/user/create' element={< UserForm/>} />
           </Routes>
         </div>
       </BrowserRouter>

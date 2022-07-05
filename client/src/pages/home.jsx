@@ -35,9 +35,9 @@ const Home = () => {
 
                     </Col>
                     <Col md="auto">
-                        {user && user.accountType === 'admin' && <Button>Create User</Button>}
+                        {user && user.accountType === 'admin' && <Button href="/user/create">Create User</Button>}
 
-                        {user && user.accountType === 'user' && <Button>Create Notes</Button>}
+                        {user && user.accountType === 'user' && <div><Button>Create Notes</Button>  <Button href="/user/create">Update Profile</Button></div>}
                     </Col>
                     <Col xs lg="3">
                     </Col>
