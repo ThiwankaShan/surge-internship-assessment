@@ -38,7 +38,7 @@ exports.checkUser = (req, res, next) => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                role: user.role,
+                accountType: user.accountType,
                 status: user.status
             }));
             next();

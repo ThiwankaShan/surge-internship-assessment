@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            role: user.role,
+            accountType: user.accountType,
             status: user.status
         }), { maxAge: process.env.JWT_EXPIRATION_MINUTES * 60 * 1000 });
         res.status(200).json({ msg: "success" });
@@ -35,7 +35,7 @@ generateToken = (user) => {
         "id": user.id,
         "status": user.status,
         "email": user.email,
-        "role": user.role
+        "accountType": user.accountType
     }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRATION_MINUTES * 60
     });

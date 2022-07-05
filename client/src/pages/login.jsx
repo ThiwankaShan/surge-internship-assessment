@@ -49,8 +49,6 @@ const Login = () => {
                 navigate('/');
             }
         }
-
-
     });
 
     return (
