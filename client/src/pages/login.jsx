@@ -34,6 +34,22 @@ const Login = () => {
 
         // request server for authentication check (/api/isAuth) or check user cookie
         // redirect based on auth
+        let user = Cookies.get('user');
+
+        if (user !== undefined) {
+            if (user != null) {
+                user = JSON.parse(user);
+                if (!user.status) {
+                    // navigate(''); // path for user profile update page
+                    navigate('/');
+                    console.log(user.status);
+                    return;
+                }
+            }else{
+                navigate('/');
+            }
+        }
+
 
     });
 
@@ -51,11 +67,11 @@ const Login = () => {
                     <Form.Control type="password" name='password' required onChange={handleChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Text className="text-danger fw-bold fst-italic text-uppercase" name='error'>
+                    <Form.Text className="text-danger fw-bold fst-italic text-uppercase" name='error'>
                         {error}
                     </Form.Text>
                 </Form.Group>
-                
+
                 <Button variant="primary" type="submit">
                     Login
                 </Button>

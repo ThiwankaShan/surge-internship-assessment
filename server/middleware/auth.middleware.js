@@ -33,14 +33,14 @@ exports.checkUser = (req, res, next) => {
             next();
         } else {
             let user = await User.findOne({ id: decodedToken.id });
-            res.cookie('user', {
+            res.cookie('user', JSON.stringify({
                 id: user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 role: user.role,
                 status: user.status
-            });
+            }));
             next();
         }
     });
