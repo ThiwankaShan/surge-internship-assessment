@@ -77,10 +77,15 @@ const UserForm = () => {
                     <Form.Control type="email" name='email' placeholder={user.accountType === 'user' && user.email} required onChange={handleChange} />
                 </Form.Group>
 
+                {user.accountType !== 'admin' &&
+                <>
                 <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Password</Form.Label>
                     <Form.Control type="password" name='password' required onChange={handleChange} />
                 </Form.Group>
+                </>
+                }
+                
 
                 <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Date of Birth</Form.Label>

@@ -1,16 +1,24 @@
 const User = require('../models/user.model');
+const emailService = require('../services/email.service');
 
 // create user
 exports.create = async (req, res) => {
-    const { firstName, lastName, email, dateOfBirth, mobile, status, password, accountType } = req.body;
+    const { firstName, lastName, email, dateOfBirth, mobile, status, accountType } = req.body;
 
     try {
         // increment user id
-        let maxID_user = await User.find({}).sort({id: -1}).limit(1);
+        let maxID_user = await User.find({}).sort({ id: -1 }).limit(1);
         let maxID = maxID_user[0].id;
         let id = maxID + 1;
 
+        // generate password
+        let password = Math.random().toString(24).slice(-8);
+
         const user = await User.create({ id, firstName, lastName, email, dateOfBirth, mobile, status, password, accountType });
+
+        // send email to user with credentials
+        emailService.sendMail(user.email, user.password);
+
         res.status(200).json(user);
     } catch (error) {
         res.status(400).json({ error: error.message });
