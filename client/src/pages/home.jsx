@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Navbar, Container, Button, Row, Col } from 'react-bootstrap';
+import UserTable from '../components/userTable';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -42,6 +43,9 @@ const Home = () => {
                     <Col xs lg="3">
                     </Col>
                 </Row>
+
+                {user && user.accountType === 'admin' && <UserTable></UserTable> }
+
             </Container>
 
 
