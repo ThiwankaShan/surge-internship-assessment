@@ -1,3 +1,4 @@
+require('dotenv').config();
 const nodemailer = require("nodemailer");
 const emailTemplate = require('../templates/email.template');
 
@@ -9,21 +10,21 @@ exports.sendMail = async (email, password) => {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    host: process.env.EMAIL_SERVICE_HOST,
+    port: process.env.EMAIL_SERVICE_PORT,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'daron.becker55@ethereal.email', // generated ethereal user
-      pass: '6HvXPYWMy9vguYbB9u', // generated ethereal password
+      user: process.env.EMAIL_SERVICE_USER, // generated ethereal user
+      pass: process.env.EMAIL_SERVICE_PASSWORD, // generated ethereal password
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "shane.thiwanka@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
+    to: email, // list of receivers
+    subject: "SURGE ASSESSMENT USER CREDENTIALS", // Subject line
+    text: "", // plain text body
     html: emailTemplate.getHTMLTemplate(email, password) // html body
   });
 
