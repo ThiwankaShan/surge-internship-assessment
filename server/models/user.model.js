@@ -6,18 +6,16 @@ const userRoles = ['admin', 'user'];
 const schema = new mongoose.Schema({
     id: {
         type: Number,
-        required: true,
+        required: [true, 'ID is required'],
         unique: true,
     },
     firstName: {
         type: String,
-        required: true,
-        maxLength: 128
+        maxLength: [128,'First Name maximum limit 128 characters']
     },
     lastName: {
         type: String,
-        required: true,
-        maxLength: 128
+        maxLength: [128, 'Last Name maximum limit 128 characters']
     },
     email: {
         type: String,
@@ -25,15 +23,13 @@ const schema = new mongoose.Schema({
         maxLength: 255,
         lowercase: true,
         unique: true,
-        validate: [validator.isEmail, 'invalid email']
+        validate: [validator.isEmail, 'Invalid Email']
     },
     dateOfBirth: {
         type: Date,
-        required: true
     },
     mobile: {
         type: Number,
-        required: true
     },
     status: {
         type: Boolean,
@@ -43,8 +39,8 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 6,
-        maxLength: 254
+        minLength: [6,'Password should be higher than 6 characters'],
+        maxLength: [254,'Password too long']
 
     },
     accountType: {

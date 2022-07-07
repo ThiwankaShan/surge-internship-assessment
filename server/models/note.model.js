@@ -8,13 +8,13 @@ const schema = new mongoose.Schema({
     },
     title: {
         type: String,
-        required: true,
+        required: [true, "Please enter a title"],
         unique: true,
         maxLength: 255
     },
     description: {
         type: String,
-        required: true
+        required: [true,"Please enter a description"]
     },
     userID: {
         type: Number,

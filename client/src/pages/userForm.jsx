@@ -64,12 +64,12 @@ const UserForm = () => {
 
                 <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">First Name</Form.Label>
-                    <Form.Control type="text" name='firstName' placeholder={user.accountType === 'user' && user.firstName} required onChange={handleChange} />
+                    <Form.Control type="text" name='firstName' placeholder={user.accountType === 'user' && user.firstName} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Last Name</Form.Label>
-                    <Form.Control type="text" name='lastName' placeholder={user.accountType === 'user' && user.lastName} required onChange={handleChange} />
+                    <Form.Control type="text" name='lastName' placeholder={user.accountType === 'user' && user.lastName} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -89,7 +89,7 @@ const UserForm = () => {
 
                 <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Date of Birth</Form.Label>
-                    <Form.Control type="date" name='dateOfBirth' required onChange={handleChange} />
+                    <Form.Control type="date" name='dateOfBirth' onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">

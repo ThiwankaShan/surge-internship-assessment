@@ -40,7 +40,7 @@ client/
 - [Node](https://nodejs.org/en/download/) ^18.0.0
 - [npm](https://nodejs.org/en/download/package-manager/)
 
-notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
+note, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
 ## Client-side usage(PORT: 3000)
 ```terminal
@@ -104,19 +104,19 @@ web-vitals: ^2.1.4 | nodemon: ^1.3.3
 # Screenshots of this project
 
 User can sign in
-![User(admin) can sign in](http://i.imgur.com/rrmbU5I.png)
+![User(admin) can sign in]()
 
 Home page - user
-![User visit Home page](http://i.imgur.com/ORCGHHY.png)
+![User visit Home page]()
 
 Home page - admin
-![Admin visit Home page](http://i.imgur.com/ORCGHHY.png)
+![Admin visit Home page]()
 
 User create/update form
-![Admin visit Home page](http://i.imgur.com/ORCGHHY.png)
+![Admin visit Home page]()
 
 Note create/update form
-![Admin visit Home page](http://i.imgur.com/ORCGHHY.png)
+![Admin visit Home page]()
 
 ## Standard
 
