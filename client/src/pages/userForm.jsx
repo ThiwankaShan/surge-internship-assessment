@@ -29,7 +29,7 @@ const UserForm = () => {
         let res;
         e.preventDefault();
         try {
-            if(user.accountType == "admin"){
+            if(user.accountType === "admin"){
                 res = await axios.post('/api/user/create', data);
             }else{
                 res = await axios.patch(`/api/user/${user.id}`,data);

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { Navbar, Container, Button, Row, Col } from 'react-bootstrap';
 import UserTable from '../components/userTable';
+import NoteTable from '../components/noteTable';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -45,6 +46,8 @@ const Home = () => {
                 </Row>
 
                 {user && user.accountType === 'admin' && <UserTable></UserTable> }
+
+                {user && user.accountType === 'user' && <NoteTable user={user}></NoteTable> }
 
             </Container>
 
