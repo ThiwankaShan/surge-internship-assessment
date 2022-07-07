@@ -83,6 +83,10 @@ $ cd server   // go to server folder
 $ npm i       // npm install packages
 $ npm start  // run it locally
 ```
+### DEFAULT ADMIN CREDENTIALS
+> Email : admin@gmail.com
+
+> pwd : admin123
 
 # Dependencies(tech-stacks)
 Client-side | Server-side
@@ -127,4 +131,4 @@ Note create/update form
 [Create new Issues](https://github.com/ThiwankaShan/surge-internship-assessment/issues) (preferred)
 
 ### License
-[License]()
+[MIT]()

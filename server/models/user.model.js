@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const userRoles = ['admin', 'user'];
 
@@ -11,7 +12,7 @@ const schema = new mongoose.Schema({
     },
     firstName: {
         type: String,
-        maxLength: [128,'First Name maximum limit 128 characters']
+        maxLength: [128, 'First Name maximum limit 128 characters']
     },
     lastName: {
         type: String,
@@ -39,8 +40,8 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: [6,'Password should be higher than 6 characters'],
-        maxLength: [254,'Password too long']
+        minLength: [6, 'Password should be higher than 6 characters'],
+        maxLength: [254, 'Password too long']
 
     },
     accountType: {
@@ -51,6 +52,21 @@ const schema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+schema.pre('save', async function save(next) {
+    if (!this.isModified('password')) return next();
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+});
+
+schema.methods.validatePassword = async function validatePassword(data) {
+    return bcrypt.compare(data, this.password);
+};
+
 schema.statics.login = async function (email, password) {
     const user = await this.findOne({ "email": email });
 
@@ -59,7 +75,7 @@ schema.statics.login = async function (email, password) {
     }
 
     // check password
-    const auth = (password == user.password) ? true : false;
+    const auth = bcrypt.compare(user.password, password) ? true : false;
 
     if (!auth) {
         throw Error('incorrect password');

@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const data = {
     'id': 0,
-    'email': 'admin@note.com',
+    'email': 'admin@gmail.com',
     'password': 'admin123',
     'firstName': 'admin',
     'lastName': 'admin',
