@@ -1,9 +1,12 @@
 import Table from 'rc-table';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Button, Container, Modal} from 'react-bootstrap';
+import { Button, Container, Modal } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 const NoteTable = (props) => {
+
+    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
@@ -14,7 +17,7 @@ const NoteTable = (props) => {
         setViewNote(data[index]);
         setShow(true);
     };
-    const handleDelete = (index)=>{
+    const handleDelete = (index) => {
         try {
             axios.delete(`/api/note/${data[index].id}`);
         } catch (err) {
@@ -22,7 +25,17 @@ const NoteTable = (props) => {
         }
     }
 
+    const handleUpdate = (index) => {
+        navigate(`/note/update/${data[index].id}`);
+    }
+
     const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+            width: 200,
+        },
         {
             title: 'Title',
             dataIndex: 'title',
@@ -33,7 +46,15 @@ const NoteTable = (props) => {
             title: 'Operations',
             dataIndex: '',
             key: 'operations',
-            render: (value, row, index) => <div><Button href="#" onClick={() => handleView(index)}>View</Button> <Button href="#" onClick={() => handleDelete(index)} variant="danger" >Delete</Button></div>,
+            render: (value, row, index) => {
+                return (
+                    <div>
+                        <Button className="m-2" onClick={() => handleView(index)}>View</Button>
+                        <Button className="m-2" onClick={() => handleUpdate(index)}>Update</Button>
+                        <Button className="m-2" onClick={() => handleDelete(index)} variant="danger" >Delete</Button>
+                    </div>
+                );
+            }
         },
     ];
 

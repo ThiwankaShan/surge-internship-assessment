@@ -39,7 +39,7 @@ const Home = () => {
                     <Col md="auto">
                         {user && user.accountType === 'admin' && <Button href="/user/create">Create User</Button>}
 
-                        {user && user.accountType === 'user' && <div><Button>Create Notes</Button>  <Button href="/user/create">Update Profile</Button></div>}
+                        {user && user.accountType === 'user' && <div><Button href="/note/create">Create Notes</Button>  <Button href="/user/create">Update Profile</Button></div>}
                     </Col>
                     <Col xs lg="3">
                     </Col>

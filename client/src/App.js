@@ -3,6 +3,7 @@ import Home from './pages/home'
 import Login from './pages/login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserForm from './pages/userForm';
+import NoteForm from './pages/noteForm';
 
 function App() {
   
@@ -14,6 +15,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/user/create' element={< UserForm/>} />
+            <Route path='/note/create' element={< NoteForm/>} />
+            <Route path='/note/update/:noteID' element={< NoteForm/>} />
           </Routes>
         </div>
       </BrowserRouter>

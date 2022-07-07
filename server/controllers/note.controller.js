@@ -2,9 +2,14 @@ const Note = require('../models/note.model');
 
 // create note
 exports.create = async(req, res) => {
-    const {id, title, description, userID} = req.body;
+    const {title, description, userID} = req.body;
 
     try{
+        // increment note id
+        let maxID_note = await Note.find({}).sort({id: -1}).limit(1);
+        let maxID = maxID_note[0].id;
+        let id = maxID + 1;
+
         const note  = await Note.create({id, title, description, userID});
         res.status(200).json(note);
     }catch(error){
